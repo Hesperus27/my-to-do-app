@@ -7,13 +7,30 @@
 <meta name="theme-color" content="#0d6efd">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
+
 <style>
 body { font-family: Arial; margin: 20px; background: #f8f9fa; }
 h2 { text-align: center; color: #0d6efd; }
 input { padding: 8px; width: 65%; }
 button { padding: 8px 12px; margin-left: 5px; cursor: pointer; background: #0d6efd; color: white; border: none; }
-ul { padding-left: 0; }
-li { margin: 8px 0; list-style: none; background: white; padding: 8px; border-radius: 5px; }
+ul { padding: 0; }
+li {
+  margin: 8px 0;
+  list-style: none;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.delete-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -33,17 +50,19 @@ function addTask() {
 
   if (task !== "") {
     const li = document.createElement("li");
-    li.textContent = task;
+
+    const span = document.createElement("span");
+    span.textContent = task;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
-    deleteBtn.style.background = "red";
-    deleteBtn.style.float = "right";
+    deleteBtn.className = "delete-btn";
 
     deleteBtn.onclick = function() {
       li.remove();
     };
 
+    li.appendChild(span);
     li.appendChild(deleteBtn);
     taskList.appendChild(li);
     input.value = "";
