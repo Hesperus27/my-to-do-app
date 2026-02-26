@@ -1,5 +1,10 @@
-const CACHE_NAME = "todo-app-v1";
-const urlsToCache = ["index.html"];
+const CACHE_NAME = "todo-pwa-v1";
+const urlsToCache = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./logo.svg"
+];
 
 self.addEventListener("install", event => {
   event.waitUntil(
