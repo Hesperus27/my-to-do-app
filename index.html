@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My To-Do List</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d6efd">
+<link rel="manifest" href="manifest.json">
+
+<style>
+  body { font-family: Arial; margin: 20px; background: #f8f9fa; }
+  h2 { text-align: center; color: #0d6efd; }
+  input { padding: 8px; width: 70%; }
+  button { padding: 8px 12px; margin-left: 5px; cursor: pointer; background: #0d6efd; color: white; border: none; }
+  ul { padding-left: 0; }
+  li { margin: 8px 0; list-style: none; background: white; padding: 8px; border-radius: 5px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<h2>My To-Do List</h2>
+<input type="text" id="taskInput" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+
+<ul id="taskList"></ul>
+
+<script>
+const taskList = document.getElementById("taskList");
+
+function addTask() {
+  const input = document.getElementById("taskInput");
+  const task = input.value.trim();
+  if(task !== "") {
+    const li = document.createElement("li");
+    li.textContent = task;
+    li.onclick = () => li.remove();
+    taskList.appendChild(li);
+    input.value = "";
+  }
+}
+
+// Register Service Worker
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then(() => console.log("Service Worker Registered"));
+}
+</script>
+
+</body>
+</html>
